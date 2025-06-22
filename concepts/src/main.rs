@@ -3,6 +3,7 @@ fn main() {
     run_section("Variables", variables);
     run_section("Data Types", data_types);
     run_section("Functions", functions);
+    run_section("Control Flow", control_flow); // <-- Added
 }
 
 fn run_section(title: &str, section_fn: fn()) {
@@ -168,4 +169,143 @@ fn another_function_with_argument(x: i32, y: i32) {
 fn five() -> i32 {
     5 // no explicit return needed, the last expression is returned
     // 5; // however does not work if you use a semicolon
+}
+
+fn control_flow() {
+    let number = 7;
+    if number < 5 {
+        println!("Condition was true: number < 5");
+    } else {
+        println!("Condition was false: number >= 5");
+    }
+
+    let number = 7;
+    // multiple arms
+    if number % 4 == 0 {
+        println!("number is divisible by 4");
+    } else if number % 3 == 0 {
+        println!("number is divisible by 3");
+    } else if number % 2 == 0 {
+        println!("number is divisible by 2");
+    } else {
+        println!("number is not divisible by 4, 3, or 2");
+    }
+
+    // assignment in if statement
+    let condition = true;
+    let number = if condition { 5 } else { 6 };
+    println!("The value of number is: {number}");
+
+    // return value from loop
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    println!("The result is {result}");
+
+    // loop labels
+    let mut count = 0;
+    'counting_up: loop {
+        println!("count = {count}");
+        let mut remaining = 10;
+
+        loop {
+            println!("remaining = {remaining}");
+            if remaining == 9 {
+                break;
+            }
+            if count == 2 {
+                break 'counting_up;
+            }
+            remaining -= 1;
+        }
+
+        count += 1;
+    }
+    println!("End count = {count}");
+
+    // custom while loop
+    let mut number: i32 = 3;
+    loop {
+        if number == 0 {
+            break;
+        }
+
+        println!("{number}!");
+
+        number -= 1;
+    }
+    println!("LIFTOFF!!!");
+
+    // while loop
+    let mut number: i32 = 3;
+
+    while number != 0 {
+        println!("{number}!");
+
+        number -= 1;
+    }
+
+    println!("LIFTOFF!!!");
+
+    // loop through collection
+    // note: example is subject to panic if index is out of bounds
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
+
+    while index < 5 {
+        println!("the value is: {}", a[index]);
+
+        index += 1;
+    }
+
+    // instead we use a for loop
+    for element in a {
+        println!("the value is: {element}");
+    }
+
+    // rewrite countdown using a range
+    for number in (1..4).rev() {
+        println!("{number}!");
+    }
+    println!("LIFTOFF!!!");
+
+    // // if in let statement
+    // let condition = true;
+    // let value = if condition { 10 } else { 20 };
+    // println!("The value is: {value}");
+
+    // // loop example
+    // let mut count = 0;
+    // loop {
+    //     count += 1;
+    //     if count == 3 {
+    //         println!("Loop breaks at count = {count}");
+    //         break;
+    //     }
+    // }
+
+    // // while loop
+    // let mut n = 3;
+    // while n != 0 {
+    //     println!("While loop: {n}");
+    //     n -= 1;
+    // }
+
+    // // for loop
+    // let a = [10, 20, 30, 40, 50];
+    // for element in a.iter() {
+    //     println!("For loop element: {element}");
+    // }
+
+    // // for loop with range
+    // for number in (1..4).rev() {
+    //     println!("Countdown: {number}");
+    // }
 }
