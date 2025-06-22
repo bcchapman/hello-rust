@@ -139,10 +139,10 @@ fn functions() {
     // statements do not return values
     let x = 5; // This is a statement, not an expression
     println!("The value of x is: {x}");
-    
+
     // this does not work because `let` is a statement, not an expression
     // and does not return a value
-    // let y = let x: i32 = 5; 
+    // let y = let x: i32 = 5;
 
     // expressions return values
     let y = {
@@ -155,7 +155,7 @@ fn functions() {
     println!("The value of five() is: {}", five());
 }
 
-// rust doesn't support function overloading, so you can't have 
+// rust doesn't support function overloading, so you can't have
 // two functions with the same name but different parameters
 fn another_function() {
     println!("\tAnother function.");
